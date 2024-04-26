@@ -1,14 +1,42 @@
 import styled from "styled-components";
 import { useState } from "react";
+// Traemos la variable de conexion para la bd
+import db from "./../firebase/firebaseConfig"
+
+//Agregamos las funciones de firebase para poder agregar nuevos usuarios dentro de la collecion
+import { collection, addDoc } from "firebase/firestore";
 
 const Formulario = () => {
     {/* Creamos el estado para cada input del formulario */}
     const [nombre, setNombre] = useState('');
-    const [correo, setCorreo] = useState();
+    const [correo, setCorreo] = useState('');
+
+    {/* Funcion que enviara la data a la bd */}
+    const sendData = async (e) => {
+        e.preventDefault();
+
+        {/* Manejamos los errores con el try catch*/}
+        try{
+            {/* con el metodo addDoc permite agregar un documento en la colleccion de usuarios , solicita dos argumentos el primero la coleccion y el segundo el objeto de los datos añadir */}
+
+            {/* Como es asincrono debemo esperar a que firebase guarde los datos y despues restablecera los valores de los inputs */}
+            await addDoc(collection(db,'usuarios'), {
+                correo: correo,
+                nombre: nombre
+            })
+        }catch (error){
+            console.log('Hubo un error al guardar el documento');
+            console.log(error)
+        }
+
+
+        setNombre('');
+        setCorreo('');
+    }
 
 
     return(
-       <form action="">
+       <form action="" onSubmit={sendData}>
             <Input 
                 type="text"
                 name="nombre"
@@ -63,6 +91,6 @@ const Boton = styled.button`
     }
 `
 
-export default Formulario
+export default Formulario;
 
 

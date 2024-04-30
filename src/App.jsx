@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import Formulario from "./components/Formulario"
+import ListaContactos from "./components/ListaContactos"
 
 const App = () => {
   return (
     <Contenedor>
       <Titulo>Lista de Contactos</Titulo>
       <Formulario />
+      <ListaContactos />
     </Contenedor>
   );
 };

@@ -44,6 +44,7 @@ const ListaContactos = () => {
             {usuarios.map((usuario) => (
                 <Contacto 
                     key={usuario.id}
+                    id={usuario.id}
                     nombre={usuario.nombre}
                     correo={usuario.correo}
                 />

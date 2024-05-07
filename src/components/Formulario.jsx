@@ -79,7 +79,7 @@ const Boton = styled.button`
     padding: 10px 30px;
     border: none;
     cursor: pointer;
-    border-radiuos: 3px;
+    border-radius: 3px;
     transition: .3s ease all;
     outline: none;
     background: #c4c4c4;
